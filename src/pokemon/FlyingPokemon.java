@@ -6,7 +6,7 @@ import pokemon.Pokemon.PokemonTypes;
 
 public class FlyingPokemon extends Pokemon {
 	
-	private static final PokemonTypes type = PokemonTypes.NORMAL;
+	private static final PokemonTypes type = PokemonTypes.FLYING;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
 	public FlyingPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
