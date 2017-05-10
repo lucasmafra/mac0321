@@ -6,7 +6,7 @@ import pokemon.Pokemon.PokemonTypes;
 
 public class IcePokemon extends Pokemon {
 	
-	private static final PokemonTypes type = PokemonTypes.NORMAL;
+	private static final PokemonTypes type = PokemonTypes.ICE;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
 	public IcePokemon(String pokemonName, int maximumHp, Attack attacks[]) {

@@ -2,11 +2,10 @@ package pokemon;
 
 import java.util.HashMap;
 import java.util.Map;
-import pokemon.Pokemon.PokemonTypes;
 
 public class BugPokemon extends Pokemon {
 	
-	private static final PokemonTypes type = PokemonTypes.NORMAL;
+	private static final PokemonTypes type = PokemonTypes.BUG;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
 	public BugPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
