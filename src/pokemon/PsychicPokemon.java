@@ -2,7 +2,6 @@ package pokemon;
 
 import java.util.HashMap;
 import java.util.Map;
-import pokemon.Pokemon.PokemonTypes;
 
 public class PsychicPokemon extends Pokemon {
 	
@@ -28,6 +27,5 @@ public class PsychicPokemon extends Pokemon {
 			effectivenessMap.put(PokemonTypes.GHOST,	100);
 			effectivenessMap.put(PokemonTypes.DRAGON,	100);
 		}
-	}
-	
+	}	
 }

@@ -5,23 +5,6 @@ import java.util.Map;
 
 public abstract class Pokemon {
 	
-	enum PokemonTypes {
-		NORMAL,
-		FIRE,
-		WATER,
-		ELECTRIC,
-		GRASS,
-		ICE,
-		FIGHTING,
-		POISON,
-		GROUND,
-		FLYING,
-		PSYCHIC,
-		BUG,
-		ROCK,
-		GHOST,
-		DRAGON;
-	}
 	public static final int MAX_ATTACKS = 4;
 	private String name;
 	private int currentHp;

@@ -1,6 +1,7 @@
 package trainer;
 
 import java.util.ArrayList;
+
 import pokemon.Pokemon;
 
 public class Trainer {
