@@ -2,7 +2,6 @@ package pokemon;
 
 import java.util.HashMap;
 import java.util.Map;
-import pokemon.Pokemon.PokemonTypes;
 
 public class FlyingPokemon extends Pokemon {
 	
