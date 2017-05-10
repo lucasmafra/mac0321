@@ -28,7 +28,8 @@ public abstract class Pokemon {
 	private int maxHp;
 	private Attack[] attacks = new Attack[MAX_ATTACKS];
 	private PokemonTypes type;
-	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
+	private static final Map<PokemonTypes, Integer> effectivenessMap = 
+			new HashMap<PokemonTypes, Integer>();
 	
 	public Pokemon(String pokemonName, int maximumHp, Attack[] attacks) {
 		this.name = pokemonName;
@@ -42,6 +43,28 @@ public abstract class Pokemon {
 	}
 	public int getHp() {
 		return currentHp;
+	}
+	public boolean heal(int hp) {
+		if (currentHp == maxHp)
+			return false;
+		else {
+			if (currentHp + hp < maxHp)
+				currentHp+= hp;
+			else
+				currentHp = maxHp;
+			return true;
+		}
+	}
+	public boolean damage(int dmg) {
+		if (currentHp == 0)
+			return false;
+		else {
+			if (currentHp - dmg < 0) 
+				currentHp -= dmg;
+			else
+				currentHp = 0;
+			return true;
+		}
 	}
 	public int getMaxHp() {
 		return maxHp;
@@ -72,10 +95,7 @@ public abstract class Pokemon {
 		return attacks[attackIndex].getName();
 	}
 	
-	public int effectivenessAgainst(PokemonTypes oponentType) {
-		return effectivenessMap.get(oponentType);
-	}
-	public int effectivenessAgainst(String oponentType) {
-		return effectivenessMap.get(PokemonTypes.valueOf(oponentType));
+	public int getEffectivenessAgainst(String oponentType) {
+		return effectivenessMap.get(PokemonTypes.valueOf(oponentType.toUpperCase()));
 	}
 }
