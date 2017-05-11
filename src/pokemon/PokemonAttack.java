@@ -1,12 +1,12 @@
 package pokemon;
 
-public class Attack {
+public class PokemonAttack {
 	
 	private String name;
 	private int baseDamage;
 	private int agility;
 
-	public Attack(String attackName, int damage, int attackAgility) {
+	public PokemonAttack(String attackName, int damage, int attackAgility) {
 		this.name = attackName;
 		this.baseDamage = damage;
 		this.agility = attackAgility;

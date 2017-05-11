@@ -8,7 +8,7 @@ public class ElectricPokemon extends Pokemon {
 	private static final PokemonTypes type = PokemonTypes.ELECTRIC;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
-	public ElectricPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
+	public ElectricPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
 			effectivenessMap.put(PokemonTypes.NORMAL,	100);

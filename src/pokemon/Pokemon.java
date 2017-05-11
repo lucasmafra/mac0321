@@ -9,12 +9,12 @@ public abstract class Pokemon {
 	private String name;
 	private int currentHp;
 	private int maxHp;
-	private Attack[] attacks = new Attack[MAX_ATTACKS];
+	private PokemonAttack[] attacks = new PokemonAttack[MAX_ATTACKS];
 	private PokemonTypes type;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = 
 			new HashMap<PokemonTypes, Integer>();
 	
-	public Pokemon(String pokemonName, int maximumHp, Attack[] attacks) {
+	public Pokemon(String pokemonName, int maximumHp, PokemonAttack[] attacks) {
 		this.name = pokemonName;
 		this.maxHp = maximumHp;
 		this.currentHp = maximumHp;
@@ -56,7 +56,7 @@ public abstract class Pokemon {
 		return type.toString();
 	}
 	
-	public Attack[] getAttacks() {
+	public PokemonAttack[] getAttacks() {
 		return attacks;
 	}
 	public int getAttackDamage(int attackIndex) {
@@ -87,8 +87,8 @@ public abstract class Pokemon {
 		if (this.currentHp > this.maxHp) //evita ficar com valor inconsistente de HP
 			this.currentHp = this.maxHp;
 		
-		if (this.currentHp < 0)
-			this.currentHp = 0; //evita ficar com valor inconsistente de HP
+		if (this.currentHp < 0) //evita ficar com valor inconsistente de HP
+			this.currentHp = 0; 
 			
 	}
 }

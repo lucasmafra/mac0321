@@ -1,6 +1,7 @@
 import event.Event;
 import event.EventController;
 import pokemon.Pokemon;
+import pokemon.PokemonAttack;
 import trainer.Item;
 import trainer.Trainer;
 
@@ -28,7 +29,7 @@ public class BattleController extends EventController {
 	}
 
 	private class RunAway extends Event { //classe interna que representa o evento de fugir da batalha
-		private static final int PRIORITY= 4;
+		private static final int PRIORITY= 4; //maior prioridade comparado com os demais
 		private Trainer trainer;
 		
 		RunAway(long startTime, Trainer trainer) {
@@ -74,7 +75,7 @@ public class BattleController extends EventController {
 	
 	private class UseItem extends Event { //classe interna que representa o evento de trocar o pokemon
 		
-		private static final int PRIORITY= 3;
+		private static final int PRIORITY= 2;
 		private Pokemon pokemon;
 		private Trainer trainer;
 		private Item item;
@@ -101,6 +102,38 @@ public class BattleController extends EventController {
 		@Override
 		public String getDescription() {
 			return this.trainer.getName() + " restaurou " + this.pokemon + " com " + String.valueOf(this.getRestoredHp());
+		}
+		
+	}
+	
+	private class Attack extends Event { //classe interna que representa o evento de trocar o pokemon
+		
+		private static final int PRIORITY= 1; //menor prioridade comparado com os demais
+		private Pokemon pokemon;
+		private Pokemon pokemonOponent;
+		private PokemonAttack pokemonAttack;
+		
+		Attack(long startTime, Pokemon pokemon, Pokemon pokemonOponent, PokemonAttack pokemonAttack) {
+			super(startTime, PRIORITY);
+			this.pokemon = pokemon;
+			this.pokemonOponent = pokemonOponent;
+			this.pokemonAttack = pokemonAttack;
+		} 
+
+		@Override
+		public void action() {
+			this.trainer.setCurrentPokemon(this.trainer.indexOf(this.pokemon));
+		}
+
+		private String getEffectiveness() {
+			switch (this.pokemon.getEffectivenessAgainst(this.pokemonOponent.)) {
+			
+			}
+		}
+		
+		@Override
+		public String getDescription() {
+			return this.pokemon + "atacou com o ataque " + this.pokemonAttack.getName()"! Foi"
 		}
 		
 	}
