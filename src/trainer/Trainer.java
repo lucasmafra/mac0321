@@ -26,6 +26,19 @@ public class Trainer {
 		else
 			return false;			
 	}
+	// Deletes the selected Pokémon if possible and shifts the vacant space to the end of the array.
+	public boolean removePokemon(int pokemonIndex) {
+		if (pokemonIndex < 0 || pokemonIndex > numberOfPokemons || 
+				pokemons[pokemonIndex] == null) {
+			return false;
+		} else {
+			for (int i = pokemonIndex; i < numberOfPokemons - 1; i++) {
+				pokemons[i] = pokemons[i + 1];
+			}
+			pokemons[numberOfPokemons - 1] = null;
+			return true;
+		}
+	}
 	public int getNumberOfPokemons() {
 		return numberOfPokemons;
 	}
