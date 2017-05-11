@@ -1,6 +1,6 @@
 package pokemon;
 
-enum PokemonTypes {
+enum PokemonType {
 	NORMAL,
 	FIRE,
 	WATER,

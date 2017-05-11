@@ -5,27 +5,27 @@ import java.util.Map;
 
 public class GrassPokemon extends Pokemon {
 	
-	private static final PokemonTypes type = PokemonTypes.GRASS;
-	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
+	private static final PokemonType type = PokemonType.GRASS;
+	private static final Map<PokemonType, Integer> effectivenessMap = new HashMap<PokemonType, Integer>();
 	
-	public GrassPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
+	public GrassPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
-			effectivenessMap.put(PokemonTypes.NORMAL,	100);
-			effectivenessMap.put(PokemonTypes.FIRE,		 50);
-			effectivenessMap.put(PokemonTypes.WATER,	200);
-			effectivenessMap.put(PokemonTypes.ELECTRIC,	100);
-			effectivenessMap.put(PokemonTypes.GRASS,	 50);
-			effectivenessMap.put(PokemonTypes.ICE,		100);
-			effectivenessMap.put(PokemonTypes.FIGHTING,	100);
-			effectivenessMap.put(PokemonTypes.POISON, 	 50);
-			effectivenessMap.put(PokemonTypes.GROUND, 	200);
-			effectivenessMap.put(PokemonTypes.FLYING,	 50);
-			effectivenessMap.put(PokemonTypes.PSYCHIC,	100);
-			effectivenessMap.put(PokemonTypes.BUG,		 50);
-			effectivenessMap.put(PokemonTypes.ROCK,		200);
-			effectivenessMap.put(PokemonTypes.GHOST,	100);
-			effectivenessMap.put(PokemonTypes.DRAGON,	 50);
+			effectivenessMap.put(PokemonType.NORMAL,	100);
+			effectivenessMap.put(PokemonType.FIRE,		 50);
+			effectivenessMap.put(PokemonType.WATER,	200);
+			effectivenessMap.put(PokemonType.ELECTRIC,	100);
+			effectivenessMap.put(PokemonType.GRASS,	 50);
+			effectivenessMap.put(PokemonType.ICE,		100);
+			effectivenessMap.put(PokemonType.FIGHTING,	100);
+			effectivenessMap.put(PokemonType.POISON, 	 50);
+			effectivenessMap.put(PokemonType.GROUND, 	200);
+			effectivenessMap.put(PokemonType.FLYING,	 50);
+			effectivenessMap.put(PokemonType.PSYCHIC,	100);
+			effectivenessMap.put(PokemonType.BUG,		 50);
+			effectivenessMap.put(PokemonType.ROCK,		200);
+			effectivenessMap.put(PokemonType.GHOST,	100);
+			effectivenessMap.put(PokemonType.DRAGON,	 50);
 		}
 	}
 	
