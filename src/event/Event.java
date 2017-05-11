@@ -3,10 +3,10 @@ package event;
 public abstract class Event {
 	private long startTime;
 	private int priority; //prioridade do evento em ordem crescente (prioridade 1 < prioridade 2...) default = 1;
-	abstract void action();
-	abstract String getDescription();
+	public abstract void action();
+	public abstract String getDescription();
 	
-	Event(long startTime, int priority) {
+	public Event(long startTime, int priority) {
 		this.startTime = startTime;
 		if (priority < 1) { //evita valores insconsistentes de prioridade
 			priority = 1;
@@ -14,7 +14,7 @@ public abstract class Event {
 		this.priority = priority;
 	}
 	
-	Event(long startTime) {
+	public Event(long startTime) {
 		this(startTime, 1);
 	}
 	
