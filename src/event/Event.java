@@ -2,8 +2,7 @@ package event;
 
 public abstract class Event {
 	private long startTime;
-	private int priority; //representa prioridade do evento; 1 = prioridade padrao;
-	private boolean isReady;
+	private int priority; //prioridade do evento em ordem crescente (prioridade 1 < prioridade 2...) default = 1;
 	abstract void action();
 	abstract String getDescription();
 	
@@ -17,6 +16,23 @@ public abstract class Event {
 	
 	Event(long startTime) {
 		this(startTime, 1);
+	}
+	
+	public boolean isReady() {
+		return System.currentTimeMillis() >= this.startTime;
+	}
+	
+	public long getStartTime() {
+		return startTime;
+	}
+	public void setStartTime(long startTime) {
+		this.startTime = startTime;
+	}
+	public int getPriority() {
+		return priority;
+	}
+	public void setPriority(int priority) {
+		this.priority = priority;
 	}
 	
 	
