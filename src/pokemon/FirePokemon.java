@@ -8,7 +8,7 @@ public class FirePokemon extends Pokemon {
 	private static final PokemonTypes type = PokemonTypes.FIRE;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
-	public FirePokemon(String pokemonName, int maximumHp, Attack attacks[]) {
+	public FirePokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
 			effectivenessMap.put(PokemonTypes.NORMAL,	100);

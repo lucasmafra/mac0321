@@ -8,7 +8,7 @@ public class GrassPokemon extends Pokemon {
 	private static final PokemonTypes type = PokemonTypes.GRASS;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
-	public GrassPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
+	public GrassPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
 			effectivenessMap.put(PokemonTypes.NORMAL,	100);

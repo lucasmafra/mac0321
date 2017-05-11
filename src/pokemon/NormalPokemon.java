@@ -8,7 +8,7 @@ public class NormalPokemon extends Pokemon {
 	private static final PokemonTypes type = PokemonTypes.NORMAL;
 	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
 	
-	public NormalPokemon(String pokemonName, int maximumHp, Attack attacks[]) {
+	public NormalPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
 			effectivenessMap.put(PokemonTypes.NORMAL,	100);
