@@ -81,4 +81,14 @@ public abstract class Pokemon {
 	public int getEffectivenessAgainst(String oponentType) {
 		return effectivenessMap.get(PokemonTypes.valueOf(oponentType.toUpperCase()));
 	}
+
+	public void setHp(int value) {
+		this.currentHp += value;
+		if (this.currentHp > this.maxHp) //evita ficar com valor inconsistente de HP
+			this.currentHp = this.maxHp;
+		
+		if (this.currentHp < 0)
+			this.currentHp = 0; //evita ficar com valor inconsistente de HP
+			
+	}
 }
