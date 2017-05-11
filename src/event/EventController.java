@@ -1,7 +1,12 @@
 package event;
 
 public class EventController {
+	
 	private EventSet eventSet;
+	
+	public EventController() {
+		this.eventSet = new EventSet();
+	}
 	
 	public void addEvent(Event event) {
 		this.eventSet.push(event);
@@ -14,7 +19,7 @@ public class EventController {
 			if (e.isReady()) {
 				e.action();
 				System.out.println(e.getDescription());
-				eventSet.removeCurrent();	
+				this.eventSet.removeCurrent();	
 			}
 		}
 	}

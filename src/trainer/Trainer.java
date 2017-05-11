@@ -10,6 +10,7 @@ public class Trainer {
 	private String name;
 	private Pokemon pokemons[] = new Pokemon[MAX_POKEMONS];
 	private int numberOfPokemons = 0;
+	private int currentPokemon;
 	private ArrayList<Item> items;
 	
 	public Trainer(String trainerName, Pokemon pokemons[], ArrayList<Item> items) {
@@ -21,6 +22,7 @@ public class Trainer {
 	public boolean addPokemon(Pokemon pokemon) {
 		if (numberOfPokemons < MAX_POKEMONS) {
 			pokemons[numberOfPokemons++] = pokemon;
+			this.setCurrentPokemon(numberOfPokemons - 1); //sempre que adiciona um pokemon, coloca ele como o atual
 			return true;
 		}
 		else
@@ -37,5 +39,21 @@ public class Trainer {
 	}
 	public ArrayList<Item> getItems() {
 		return items;
+	}
+
+	public int getCurrentPokemon() {
+		return currentPokemon;
+	}
+
+	public void setCurrentPokemon(int currentPokemon) {
+		this.currentPokemon = currentPokemon;
+	}
+	
+	public int indexOf(Pokemon pokemon) {
+		for (int i = 0; i< this.numberOfPokemons;i++) {
+			if (pokemon == this.pokemons[i])
+				return i;
+		}
+		return -1;
 	}
 }
