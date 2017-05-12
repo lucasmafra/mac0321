@@ -1,6 +1,6 @@
 package pokemon;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public abstract class Pokemon {
@@ -12,7 +12,7 @@ public abstract class Pokemon {
 	private PokemonAttack[] attacks = new PokemonAttack[MAX_ATTACKS];
 	private PokemonType type;
 	// Maps opponent types to the effectiveness of an against them.
-	private static final Map<PokemonType, Integer> effectivenessMap = new HashMap<PokemonType, Integer>();
+	private static final Map<PokemonType, Integer> effectivenessMap = new EnumMap<PokemonType, Integer>(PokemonType.class);
 
 	public Pokemon(String pokemonName, int maximumHp, PokemonAttack[] attacks) {
 		this.name = pokemonName;

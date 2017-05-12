@@ -1,12 +1,12 @@
 package pokemon;
 
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 
 public class ElectricPokemon extends Pokemon {
 
 	private static final PokemonType type = PokemonType.ELECTRIC;
-	private static final Map<PokemonType, Integer> effectivenessMap = new HashMap<PokemonType, Integer>();
+	private static final Map<PokemonType, Integer> effectivenessMap = new EnumMap<PokemonType, Integer>(PokemonType.class);
 
 	public ElectricPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
