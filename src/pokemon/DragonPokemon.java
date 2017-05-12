@@ -4,29 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DragonPokemon extends Pokemon {
-	
-	private static final PokemonTypes type = PokemonTypes.DRAGON;
-	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
-	
+
+	private static final PokemonType type = PokemonType.DRAGON;
+	private static final Map<PokemonType, Integer> effectivenessMap = new HashMap<PokemonType, Integer>();
+
 	public DragonPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
-			effectivenessMap.put(PokemonTypes.NORMAL,	100);
-			effectivenessMap.put(PokemonTypes.FIRE,		100);
-			effectivenessMap.put(PokemonTypes.WATER,	100);
-			effectivenessMap.put(PokemonTypes.ELECTRIC,	100);
-			effectivenessMap.put(PokemonTypes.GRASS,	100);
-			effectivenessMap.put(PokemonTypes.ICE,		100);
-			effectivenessMap.put(PokemonTypes.FIGHTING,	100);
-			effectivenessMap.put(PokemonTypes.POISON, 	100);
-			effectivenessMap.put(PokemonTypes.GROUND, 	100);
-			effectivenessMap.put(PokemonTypes.FLYING,	100);
-			effectivenessMap.put(PokemonTypes.PSYCHIC,	100);
-			effectivenessMap.put(PokemonTypes.BUG,		100);
-			effectivenessMap.put(PokemonTypes.ROCK,		100);
-			effectivenessMap.put(PokemonTypes.GHOST,	100);
-			effectivenessMap.put(PokemonTypes.DRAGON,	200);
+			effectivenessMap.put(PokemonType.NORMAL, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.FIRE, 		Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.WATER, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.ELECTRIC, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.GRASS, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.ICE, 		Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.FIGHTING, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.POISON, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.GROUND, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.FLYING, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.PSYCHIC, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.BUG, 		Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.ROCK, 		Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.GHOST, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.DRAGON, 	Effectiveness.SUPER_EFFECTIVE.getValue());
 		}
 	}
-	
+
 }

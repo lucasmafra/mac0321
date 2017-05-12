@@ -10,9 +10,9 @@ public abstract class Pokemon {
 	private int currentHp;
 	private int maxHp;
 	private PokemonAttack[] attacks = new PokemonAttack[MAX_ATTACKS];
-	private PokemonTypes type;
-	private static final Map<PokemonTypes, Integer> effectivenessMap = 
-			new HashMap<PokemonTypes, Integer>();
+	private PokemonType type;
+	private static final Map<PokemonType, Integer> effectivenessMap = 
+			new HashMap<PokemonType, Integer>();
 	
 	public Pokemon(String pokemonName, int maximumHp, PokemonAttack[] attacks) {
 		this.name = pokemonName;
@@ -79,6 +79,6 @@ public abstract class Pokemon {
 	}
 	
 	public int getEffectivenessAgainst(String oponentType) {
-		return effectivenessMap.get(PokemonTypes.valueOf(oponentType.toUpperCase()));
+		return effectivenessMap.get(PokemonType.valueOf(oponentType.toUpperCase()));
 	}
 }

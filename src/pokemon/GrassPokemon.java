@@ -4,29 +4,29 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GrassPokemon extends Pokemon {
-	
-	private static final PokemonTypes type = PokemonTypes.GRASS;
-	private static final Map<PokemonTypes, Integer> effectivenessMap = new HashMap<PokemonTypes, Integer>();
-	
+
+	private static final PokemonType type = PokemonType.GRASS;
+	private static final Map<PokemonType, Integer> effectivenessMap = new HashMap<PokemonType, Integer>();
+
 	public GrassPokemon(String pokemonName, int maximumHp, PokemonAttack attacks[]) {
 		super(pokemonName, maximumHp, attacks);
 		if (effectivenessMap.isEmpty()) {
-			effectivenessMap.put(PokemonTypes.NORMAL,	100);
-			effectivenessMap.put(PokemonTypes.FIRE,		 50);
-			effectivenessMap.put(PokemonTypes.WATER,	200);
-			effectivenessMap.put(PokemonTypes.ELECTRIC,	100);
-			effectivenessMap.put(PokemonTypes.GRASS,	 50);
-			effectivenessMap.put(PokemonTypes.ICE,		100);
-			effectivenessMap.put(PokemonTypes.FIGHTING,	100);
-			effectivenessMap.put(PokemonTypes.POISON, 	 50);
-			effectivenessMap.put(PokemonTypes.GROUND, 	200);
-			effectivenessMap.put(PokemonTypes.FLYING,	 50);
-			effectivenessMap.put(PokemonTypes.PSYCHIC,	100);
-			effectivenessMap.put(PokemonTypes.BUG,		 50);
-			effectivenessMap.put(PokemonTypes.ROCK,		200);
-			effectivenessMap.put(PokemonTypes.GHOST,	100);
-			effectivenessMap.put(PokemonTypes.DRAGON,	 50);
+			effectivenessMap.put(PokemonType.NORMAL, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.FIRE, 		Effectiveness.NOT_VERY_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.WATER, 	Effectiveness.SUPER_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.ELECTRIC, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.GRASS, 	Effectiveness.NOT_VERY_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.ICE, 		Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.FIGHTING, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.POISON, 	Effectiveness.NOT_VERY_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.GROUND, 	Effectiveness.SUPER_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.FLYING, 	Effectiveness.NOT_VERY_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.PSYCHIC, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.BUG, 		Effectiveness.NOT_VERY_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.ROCK, 		Effectiveness.SUPER_EFFECTIVE.getValue());
+			effectivenessMap.put(PokemonType.GHOST, 	Effectiveness.NORMAL.getValue());
+			effectivenessMap.put(PokemonType.DRAGON, 	Effectiveness.NOT_VERY_EFFECTIVE.getValue());
 		}
 	}
-	
+
 }
