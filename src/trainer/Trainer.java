@@ -14,6 +14,7 @@ public class Trainer {
 	private ArrayList<Item> items;
 	
 	public Trainer(String trainerName, Pokemon pokemons[], ArrayList<Item> items) {
+		// TODO Treat trainerName == null
 		this.name = trainerName;
 		this.pokemons = pokemons;
 		this.items = items;
@@ -22,7 +23,7 @@ public class Trainer {
 	public boolean addPokemon(Pokemon pokemon) {
 		if (numberOfPokemons < MAX_POKEMONS) {
 			pokemons[numberOfPokemons++] = pokemon;
-			this.setCurrentPokemon(numberOfPokemons - 1); //sempre que adiciona um pokemon, coloca ele como o atual
+			setCurrentPokemon(numberOfPokemons - 1); //sempre que adiciona um pokemon, coloca ele como o atual
 			return true;
 		}
 		else
@@ -47,6 +48,14 @@ public class Trainer {
 
 	public void setCurrentPokemon(int currentPokemon) {
 		this.currentPokemon = currentPokemon;
+	}
+	
+	public void damagePokemon(int damage) {
+		pokemons[currentPokemon].damage(damage);		
+	}
+	
+	public void healPokemon(Pokemon pokemon, int hp) {
+		pokemon.heal(hp);
 	}
 	
 	public int indexOf(Pokemon pokemon) {
