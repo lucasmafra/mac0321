@@ -14,6 +14,7 @@ public abstract class Pokemon {
 	// Maps opponent types to the effectiveness of an against them.
 	private static final Map<PokemonType, Effectiveness> effectivenessMap = new EnumMap<PokemonType, Effectiveness>(
 			PokemonType.class);
+
 	public Pokemon(String pokemonName, int maximumHp, PokemonAttack[] attacks) {
 		this.name = pokemonName;
 		this.maxHp = maximumHp;

@@ -20,10 +20,4 @@ public class BattleControllerTest {
 		bc.setCompetitors(competitors);
 		assert (competitors.equals(bc.getCompetitors()));
 	}
-
-	@Test
-	public void testRunAway() {
-		return;
-	}
-
 }

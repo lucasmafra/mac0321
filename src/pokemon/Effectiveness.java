@@ -15,7 +15,7 @@ public enum Effectiveness {
 	public int getValue() {
 		return value;
 	}
-	
+
 	public String getDescription() {
 		return description;
 	}
