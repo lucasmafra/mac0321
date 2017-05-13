@@ -6,7 +6,7 @@ import trainer.Item;
 import trainer.Trainer;
 
 public class BattleController extends EventController {
-	private Trainer competitors[];
+	private Trainer[] competitors;
 	private boolean isActive;
 	
 	BattleController() {
@@ -44,7 +44,7 @@ public class BattleController extends EventController {
 
 		@Override
 		public String getDescription() {
-			return this.trainer.getName() + " fugiu da batalha!";
+			return trainer.getName() + " fugiu da batalha!";
 		}
 		
 	}
@@ -73,35 +73,35 @@ public class BattleController extends EventController {
 		
 	}
 	
-	private class UseItem extends Event { //classe interna que representa o evento de trocar o pokemon
+	private class UseItem extends Event { //classe interna que representa o evento de usar um item
 		
 		private static final int PRIORITY= 2;
 		private Pokemon pokemon;
 		private Trainer trainer;
 		private Item item;
+		private int difference;
 		
 		UseItem(long startTime, Pokemon pokemon, Trainer trainer, Item item) {
 			super(startTime, PRIORITY);
 			this.pokemon = pokemon;
 			this.trainer = trainer;
 			this.item = item;
-		} 
-		
-		int getRestoredHp() {
-			if (this.pokemon.getHp() + this.item.getHealPower() <= this.pokemon.getMaxHp()) //nao pode restaurar para mais do que 100%
-				return this.pokemon.getHp() + this.item.getHealPower();
-			
-			return this.pokemon.getMaxHp();
 		}
 
 		@Override
 		public void action() {
-			this.pokemon.setHp(this.item.getHealPower());
+			int oldHp = pokemon.getHp();
+			trainer.healPokemon(pokemon, item.getHp());
+			difference = pokemon.getHp() - oldHp;
+			return;
 		}
 
 		@Override
 		public String getDescription() {
-			return this.trainer.getName() + " restaurou " + this.pokemon + " com " + String.valueOf(this.getRestoredHp());
+			if (difference != 0) 
+				return trainer.getName() + " restaurou " + difference + " de hp com " + item.getName();
+			else
+				return pokemon.getName() + " já está com a vida cheia!";
 		}
 		
 	}
@@ -113,16 +113,16 @@ public class BattleController extends EventController {
 		private Pokemon pokemonOponent;
 		private PokemonAttack pokemonAttack;
 		
-		Attack(long startTime, Pokemon pokemon, Pokemon pokemonOponent, PokemonAttack pokemonAttack) {
+		Attack(long startTime, Pokemon pokemon, Trainer trainer, Trainer opponent) {
 			super(startTime, PRIORITY);
-			this.pokemon = pokemon;
-			this.pokemonOponent = pokemonOponent;
+			this.pokemon = trainer.getCurrentPokemon();
+			this.pokemonOponent = opponent.getCurrentPokemon();
 			this.pokemonAttack = pokemonAttack;
 		} 
 
 		@Override
 		public void action() {
-			this.trainer.setCurrentPokemon(this.trainer.indexOf(this.pokemon));
+			trainer.setCurrentPokemon(this.trainer.indexOf(this.pokemon));
 		}
 
 		private String getEffectiveness() {
@@ -133,7 +133,7 @@ public class BattleController extends EventController {
 		
 		@Override
 		public String getDescription() {
-			return this.pokemon + "atacou com o ataque " + this.pokemonAttack.getName()"! Foi"
+			return this.pokemon + "atacou com o ataque " + this.pokemonAttack.getName() + "! Foi";
 		}
 		
 	}
