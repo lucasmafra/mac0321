@@ -8,17 +8,16 @@ import trainer.Trainer;
 public class BattleController extends EventController {
 	private Trainer[] competitors;
 	private boolean isActive;
-	
+
 	BattleController() {
 		super();
 		this.competitors = new Trainer[2];
 		this.isActive = true;
 	}
-	
+
 	public Trainer[] getCompetitors() {
 		return competitors;
 	}
-
 
 	public void setCompetitors(Trainer[] competitors) {
 		this.competitors = competitors;
@@ -28,14 +27,16 @@ public class BattleController extends EventController {
 		return isActive;
 	}
 
-	private class RunAway extends Event { //classe interna que representa o evento de fugir da batalha
-		private static final int PRIORITY= 4; //maior prioridade comparado com os demais
+	// classe interna que representa o evento de fugir da batalha
+	private class RunAway extends Event {
+
+		private static final int PRIORITY = 4;
 		private Trainer trainer;
-		
+
 		RunAway(long startTime, Trainer trainer) {
 			super(startTime, PRIORITY);
 			this.trainer = trainer;
-		} 
+		}
 
 		@Override
 		public void action() {
@@ -46,44 +47,53 @@ public class BattleController extends EventController {
 		public String getDescription() {
 			return trainer.getName() + " fugiu da batalha!";
 		}
-		
+
 	}
-	
-	private class SwitchPokemon extends Event { //classe interna que representa o evento de trocar o pokemon
-		
-		private static final int PRIORITY= 3;
+
+	// classe interna que representa o evento de trocar o pokemon
+	private class SwitchPokemon extends Event {
+
+		private static final int PRIORITY = 3;
+		private int nextPokemonIndex;
 		private Pokemon nextPokemon;
 		private Trainer trainer;
-		
-		SwitchPokemon(long startTime, Pokemon pokemon, Trainer trainer) {
+
+		SwitchPokemon(long startTime, int pokemonIndex, Trainer trainer) {
 			super(startTime, PRIORITY);
-			this.nextPokemon = pokemon;
 			this.trainer = trainer;
-		} 
+			nextPokemonIndex = pokemonIndex;
+			this.nextPokemon = trainer.getPokemons()[pokemonIndex];
+		}
 
 		@Override
 		public void action() {
-			this.trainer.setCurrentPokemon(this.trainer.indexOf(this.nextPokemon));
+			// if the index is valid
+			if (nextPokemonIndex != trainer.getCurrentPokemonIndex() && nextPokemonIndex >= 0
+					&& nextPokemonIndex < trainer.getNumberOfPokemons())
+				trainer.setCurrentPokemon(nextPokemonIndex);
 		}
 
 		@Override
 		public String getDescription() {
-			return this.trainer.getName() + " trocou para o pokemon " + this.nextPokemon;
+			return trainer.getName() + " trocou para o pokemon " + nextPokemon.getName();
 		}
-		
+
 	}
-	
-	private class UseItem extends Event { //classe interna que representa o evento de usar um item
-		
-		private static final int PRIORITY= 2;
+
+	// classe interna que representa o evento de usar um item
+	private class UseItem extends Event {
+
+		private static final int PRIORITY = 2;
+		private int pokemonIndex;
 		private Pokemon pokemon;
 		private Trainer trainer;
 		private Item item;
 		private int difference;
-		
-		UseItem(long startTime, Pokemon pokemon, Trainer trainer, Item item) {
+
+		UseItem(long startTime, int pokemonIndex, Trainer trainer, Item item) {
 			super(startTime, PRIORITY);
-			this.pokemon = pokemon;
+			this.pokemonIndex = pokemonIndex;
+			this.pokemon = trainer.getPokemons()[pokemonIndex];
 			this.trainer = trainer;
 			this.item = item;
 		}
@@ -91,34 +101,35 @@ public class BattleController extends EventController {
 		@Override
 		public void action() {
 			int oldHp = pokemon.getHp();
-			trainer.healPokemon(pokemon, item.getHp());
+			trainer.healPokemon(pokemonIndex, item.getHp());
 			difference = pokemon.getHp() - oldHp;
 			return;
 		}
 
 		@Override
 		public String getDescription() {
-			if (difference != 0) 
+			if (difference != 0)
 				return trainer.getName() + " restaurou " + difference + " de hp com " + item.getName();
 			else
 				return pokemon.getName() + " já está com a vida cheia!";
 		}
-		
+
 	}
-	
-	private class Attack extends Event { //classe interna que representa o evento de trocar o pokemon
-		
-		private static final int PRIORITY= 1; //menor prioridade comparado com os demais
+
+	// classe interna que representa o evento de trocar o pokemon
+	private class Attack extends Event {
+
+		private static final int PRIORITY = 1;
 		private Pokemon pokemon;
 		private Pokemon pokemonOponent;
 		private PokemonAttack pokemonAttack;
-		
+
 		Attack(long startTime, Pokemon pokemon, Trainer trainer, Trainer opponent) {
 			super(startTime, PRIORITY);
 			this.pokemon = trainer.getCurrentPokemon();
 			this.pokemonOponent = opponent.getCurrentPokemon();
 			this.pokemonAttack = pokemonAttack;
-		} 
+		}
 
 		@Override
 		public void action() {
@@ -130,14 +141,12 @@ public class BattleController extends EventController {
 			
 			}
 		}
-		
+
 		@Override
 		public String getDescription() {
 			return this.pokemon + "atacou com o ataque " + this.pokemonAttack.getName() + "! Foi";
 		}
-		
+
 	}
-	
-	
-	
+
 }
