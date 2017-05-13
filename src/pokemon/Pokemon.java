@@ -12,8 +12,8 @@ public abstract class Pokemon {
 	private PokemonAttack[] attacks = new PokemonAttack[MAX_ATTACKS];
 	private PokemonType type;
 	// Maps opponent types to the effectiveness of an against them.
-	private static final Map<PokemonType, Integer> effectivenessMap = new EnumMap<PokemonType, Integer>(PokemonType.class);
-
+	private static final Map<PokemonType, Effectiveness> effectivenessMap = new EnumMap<PokemonType, Effectiveness>(
+			PokemonType.class);
 	public Pokemon(String pokemonName, int maximumHp, PokemonAttack[] attacks) {
 		this.name = pokemonName;
 		this.maxHp = maximumHp;
@@ -86,10 +86,8 @@ public abstract class Pokemon {
 		return attacks[attackIndex].getName();
 	}
 
-	// Returns the effectiveness multiplier for an attack against an enemy
-	// Pokémon of type oponentType. (0 for No effect, 50 for Not very effective,
-	// 100 for Normal, and 200 for Super-effective.
-	public int getEffectivenessAgainst(PokemonType oponentType) {
-		return effectivenessMap.get(oponentType);
+	public Effectiveness getEffectivenessAgainst(PokemonType opponentType) {
+		return effectivenessMap.get(opponentType);
+
 	}
 }
