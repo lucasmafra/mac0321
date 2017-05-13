@@ -31,24 +31,38 @@ public class Trainer {
 			return false;
 	}
 
-	public String getName() {
-		return name;
+	// Deletes the selected Pokémon if possible and shifts the vacant space to
+	// the end of the array.
+	public boolean removePokemon(int pokemonIndex) {
+		if (pokemonIndex < 0 || pokemonIndex > numberOfPokemons || pokemons[pokemonIndex] == null) {
+			return false;
+		} else {
+			for (int i = pokemonIndex; i < numberOfPokemons - 1; i++) {
+				pokemons[i] = pokemons[i + 1];
+			}
+			pokemons[numberOfPokemons - 1] = null;
+			return true;
+		}
 	}
 
-	public int getNumberOfPokemons() {
-		return numberOfPokemons;
+	public String getName() {
+		return name;
 	}
 
 	public Pokemon[] getPokemons() {
 		return pokemons;
 	}
 
-	public ArrayList<Item> getItems() {
-		return items;
+	public int getNumberOfPokemons() {
+		return numberOfPokemons;
 	}
 
 	public int getCurrentPokemonIndex() {
 		return currentPokemonIndex;
+	}
+
+	public ArrayList<Item> getItems() {
+		return items;
 	}
 
 	public void setCurrentPokemon(int pokemonIndex) {
@@ -56,19 +70,18 @@ public class Trainer {
 			currentPokemonIndex = pokemonIndex;
 		else
 			System.err.println("Error! pokemon doesn't belong to trainer " + getName());
-
 	}
 
 	public Pokemon getCurrentPokemon() {
 		return pokemons[currentPokemonIndex];
 	}
 
-	public PokemonType getCurrentPokemonType() {
-		return pokemons[currentPokemonIndex].getType();
-	}
-
 	public String getCurrentPokemonName() {
 		return pokemons[currentPokemonIndex].getName();
+	}
+
+	public PokemonType getCurrentPokemonType() {
+		return pokemons[currentPokemonIndex].getType();
 	}
 
 	public void damagePokemon(int damage) {
