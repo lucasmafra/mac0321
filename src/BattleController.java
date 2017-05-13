@@ -1,5 +1,6 @@
 import event.Event;
 import event.EventController;
+import pokemon.Effectiveness;
 import pokemon.Pokemon;
 import pokemon.PokemonAttack;
 import trainer.Item;
@@ -120,24 +121,25 @@ public class BattleController extends EventController {
 	private class Attack extends Event {
 
 		private static final int PRIORITY = 1;
-		private Trainer trainer;
+		private static final int MAX_RAND = 255;
+		private static final int MIN_RAND = 217;
 		private Pokemon pokemon;
 		private Trainer opponentTrainer;
-		private Pokemon opponentPokemon;
 		private PokemonAttack pokemonAttack;
 		private int damage;
-		private int effectiveness;
+		private Effectiveness effectiveness;
 
 		Attack(long startTime, Trainer trainer, Trainer opponent, PokemonAttack pokemonAttack) {
 			super(startTime, PRIORITY);
-			this.trainer = trainer;
 			this.pokemon = trainer.getCurrentPokemon();
 			this.opponentTrainer = opponent;
-			this.opponentPokemon = opponentTrainer.getCurrentPokemon();
 			this.pokemonAttack = pokemonAttack;
-			
-			effectiveness = pokemon.getEffectivenessAgainst(opponentPokemon.getType());
-			damage = pokemonAttack.getBaseDamage() * effectiveness;
+
+			int random = MIN_RAND + (int) (Math.random() + MAX_RAND);
+			effectiveness = pokemon.getEffectivenessAgainst(opponent.getCurrentPokemonType());
+			// Damage = ((2*Level/5 + 2)*Power*Attack/Defense/50 + 2) * Modifier
+			damage = pokemonAttack.getBaseDamage() / 50 * effectiveness.getValue() / Effectiveness.NORMAL.getValue()
+					* random / MAX_RAND;
 		}
 
 		@Override
@@ -145,15 +147,9 @@ public class BattleController extends EventController {
 			opponentTrainer.damagePokemon(damage);
 		}
 
-		private String getEffectiveness() {
-			switch (this.pokemon.getEffectivenessAgainst(this.pokemonOponent.)) {
-			
-			}
-		}
-
 		@Override
 		public String getDescription() {
-			return this.pokemon + "atacou com o ataque " + this.pokemonAttack.getName() + "! Foi";
+			return pokemon.getName() + " usou " + pokemonAttack.getName() + "!" + effectiveness.getDescription();
 		}
 
 	}

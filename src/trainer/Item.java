@@ -8,7 +8,7 @@ public class Item {
 		this.name = itemName;
 		this.hp = healthPoints;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

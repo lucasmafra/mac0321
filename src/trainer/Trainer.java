@@ -1,8 +1,8 @@
 package trainer;
 
 import java.util.ArrayList;
-
 import pokemon.Pokemon;
+import pokemon.PokemonType;
 
 public class Trainer {
 
@@ -58,9 +58,17 @@ public class Trainer {
 			System.err.println("Error! pokemon doesn't belong to trainer " + getName());
 
 	}
-	
+
 	public Pokemon getCurrentPokemon() {
 		return pokemons[currentPokemonIndex];
+	}
+
+	public PokemonType getCurrentPokemonType() {
+		return pokemons[currentPokemonIndex].getType();
+	}
+
+	public String getCurrentPokemonName() {
+		return pokemons[currentPokemonIndex].getName();
 	}
 
 	public void damagePokemon(int damage) {
