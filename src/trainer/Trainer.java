@@ -58,6 +58,10 @@ public class Trainer {
 			System.err.println("Error! pokemon doesn't belong to trainer " + getName());
 
 	}
+	
+	public Pokemon getCurrentPokemon() {
+		return pokemons[currentPokemonIndex];
+	}
 
 	public void damagePokemon(int damage) {
 		pokemons[currentPokemonIndex].damage(damage);

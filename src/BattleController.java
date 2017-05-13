@@ -120,20 +120,29 @@ public class BattleController extends EventController {
 	private class Attack extends Event {
 
 		private static final int PRIORITY = 1;
+		private Trainer trainer;
 		private Pokemon pokemon;
-		private Pokemon pokemonOponent;
+		private Trainer opponentTrainer;
+		private Pokemon opponentPokemon;
 		private PokemonAttack pokemonAttack;
+		private int damage;
+		private int effectiveness;
 
-		Attack(long startTime, Pokemon pokemon, Trainer trainer, Trainer opponent) {
+		Attack(long startTime, Trainer trainer, Trainer opponent, PokemonAttack pokemonAttack) {
 			super(startTime, PRIORITY);
+			this.trainer = trainer;
 			this.pokemon = trainer.getCurrentPokemon();
-			this.pokemonOponent = opponent.getCurrentPokemon();
+			this.opponentTrainer = opponent;
+			this.opponentPokemon = opponentTrainer.getCurrentPokemon();
 			this.pokemonAttack = pokemonAttack;
+			
+			effectiveness = pokemon.getEffectivenessAgainst(opponentPokemon.getType());
+			damage = pokemonAttack.getBaseDamage() * effectiveness;
 		}
 
 		@Override
 		public void action() {
-			trainer.setCurrentPokemon(this.trainer.indexOf(this.pokemon));
+			opponentTrainer.damagePokemon(damage);
 		}
 
 		private String getEffectiveness() {
