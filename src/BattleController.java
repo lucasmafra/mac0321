@@ -10,22 +10,23 @@ public class BattleController extends EventController {
 	private Trainer[] competitors;
 	private boolean isActive;
 
-	BattleController() {
+	BattleController(Trainer competitor1, Trainer competitor2) {
 		super();
-		this.competitors = new Trainer[2];
+		this.competitors = new Trainer[]{competitor1, competitor2};
 		this.isActive = true;
+		addEvent(new SetTurn(System.currentTimeMillis()));
 	}
 
 	public Trainer[] getCompetitors() {
 		return competitors;
 	}
 
-	public void setCompetitors(Trainer[] competitors) {
-		this.competitors = competitors;
-	}
-
 	public boolean isActive() {
 		return isActive;
+	}
+
+	public Event getPlayerMove(Trainer player) {
+
 	}
 
 	// classe interna que representa o evento de fugir da batalha
@@ -149,9 +150,47 @@ public class BattleController extends EventController {
 
 		@Override
 		public String getDescription() {
-			return pokemon.getName() + " usou " + pokemonAttack.getName() + "!" + effectiveness.getDescription();
+			return pokemon.getName() + " usou " + pokemonAttack.getName() + "!\n" + effectiveness.getDescription();
 		}
 
+		public int getAgility() {
+			return pokemonAttack.getAgility();
+		}
+	}
+
+	private class SetTurn extends Event {
+		// It is executed after all the events from the previous turn are
+		// executed.
+		private Trainer playerOne;
+		private Trainer playerTwo;
+		private Event playerOneMove;
+		private Event playerTwoMove;
+
+		SetTurn(long startTime) {
+			super(startTime);
+			this.playerOne = getCompetitors()[0];
+			this.playerTwo = getCompetitors()[1];
+		}
+
+		@Override
+		public void action() {
+			playerOneMove = getPlayerMove(playerOne);
+			playerOneMove = getPlayerMove(playerOne);
+			// Both players are attacking and player two attacks first.
+			if (playerOneMove.getClass() == Attack.class && playerTwoMove.getClass() == Attack.class
+					&& ((Attack) playerOneMove).getAgility() < ((Attack) playerTwoMove).getAgility()) {
+				addEvent(playerTwoMove);
+				addEvent(playerOneMove);
+			} else {
+				addEvent(playerOneMove);
+				addEvent(playerTwoMove);
+			}
+		}
+
+		@Override
+		public String getDescription() {
+			return "";
+		}
 	}
 
 }
